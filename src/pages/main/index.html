@@ -18,7 +18,7 @@
         <span class="btn yun-control-btn">云盘操作</span>
       </div>
       <div class="control-btns-right">
-        <span class="btn exit-route-btn">退出</span>
+        <span class="btn exit-route-btn" id="exit_login">退出</span>
       </div>
     </div>
 
@@ -49,6 +49,7 @@
 
           <div class="control-content">
             <div class="content-item">路由器状态</div>
+            <!-- 设置下向导 -->
             <div class="content-item">
               <div class="connect-type-wrapper">连接类型
                 <label class="radio-btn on">
@@ -73,30 +74,67 @@
               <div class="connect-type-main-wrapper">
                 <div class="connect-type-item active">
                   <p>请输入运营商给您的宽带上网账号及密码。如有遗忘，可拨打运营商电话找回。</p>
-                  <label class="label-item"><span>宽带账号</span><input type="text" placeholder="请输入宽带账号"></label>
-                  <label class="label-item"><span>宽带密码</span><input type="text" placeholder="请输入宽带密码"></label>
+                  <form id="setting_wizard_broadband_form">
+                    <label class="label-item">
+                      <span>宽带账号</span>
+                      <input type="text" name="acc" placeholder="请输入宽带账号">
+                    </label>
+                    <label class="label-item">
+                      <span>宽带密码</span>
+                      <input type="text" name="pwd" placeholder="请输入宽带密码">
+                    </label>
 
-                  <label class="label-item"><span>WIFI名称</span><input type="text" placeholder="请输入WIFI名称"></label>
-                  <label class="label-item"><span>WIFI密码</span><input type="text" placeholder="请输入WIFI密码"></label>
-                  <button>保存</button>
+                    <label class="label-item">
+                      <span>WIFI名称</span>
+                      <input type="text" name="wf_name" placeholder="请输入WIFI名称">
+                    </label>
+                    <label class="label-item">
+                      <span>WIFI密码</span>
+                      <input type="password" name="wf_pwd" placeholder="请输入WIFI密码">
+                    </label>
+                  </form>
+                  <button id="setting_wizard_broadband_form_submit">保存</button>
                 </div>
 
                 <div class="connect-type-item">
                   <p>请输入运营商给您的IP、子网掩码等信息。如有遗忘，可拨打运营商电话找回</p>
-                  <label class="label-item"><span>IP</span><input type="text" placeholder="请输入您的IP地址"></label>
-                  <label class="label-item"><span>子网掩码</span><input type="text" placeholder="请输入您的子网掩码"></label>
-                  <label class="label-item"><span>默认网关</span><input type="text" placeholder="请输入您的默认网关"></label>
-                  <label class="label-item"><span>DNS(首选)</span><input type="text" placeholder="请输入您的DNS（选填）"></label>
-                  <label class="label-item"><span>WIFI名称</span><input type="text" placeholder="请输入WIFI名称"></label>
-                  <label class="label-item"><span>WIFI密码</span><input type="text" placeholder="请输入WIFI密码"></label>
-                  <button>保存</button>
+                  <form id="setting_wizard_static_form">
+                    <label class="label-item">
+                      <span>IP</span>
+                      <input type="text" name="ip_addr" placeholder="请输入您的IP地址">
+                    </label>
+                    <label class="label-item">
+                      <span>子网掩码</span>
+                      <input type="text" name="subnet" placeholder="请输入您的子网掩码">
+                    </label>
+                    <label class="label-item">
+                      <span>默认网关</span>
+                      <input type="text" name="wg" placeholder="请输入您的默认网关">
+                    </label>
+                    <label class="label-item">
+                      <span>DNS(首选)</span>
+                      <input type="text" name="dns" placeholder="请输入您的DNS（选填）">
+                    </label>
+                    <label class="label-item">
+                      <span>WIFI名称</span>
+                      <input type="text" name="" placeholder="请输入WIFI名称">
+                    </label>
+                    <label class="label-item">
+                      <span>WIFI密码</span>
+                      <input type="text" name="" placeholder="请输入WIFI密码">
+                    </label>
+                  </form>
+
+                  <button class="" id="setting_wizard_static_form_submit">保存</button>
                 </div>
 
-                <div class="connect-type-item">
+                <div class="connect-type-item" id="">
                   <p>动态IP一般适用于内部网络，连上路由器后就可以直接上网。</p>
-                  <label class="label-item"><span>WIFI名称</span><input type="text" placeholder="请输入WIFI名称"></label>
-                  <label class="label-item"><span>WIFI密码</span><input type="text" placeholder="请输入WIFI密码"></label>
-                  <button>保存</button>
+                  <form id="setting_wizard_dynamic_form">
+                    <label class="label-item"><span>WIFI名称</span><input type="text" placeholder="请输入WIFI名称"></label>
+                    <label class="label-item"><span>WIFI密码</span><input type="text" placeholder="请输入WIFI密码"></label>
+                  </form>
+                  <button id="setting_wizard_dynamic_form_submit">保存</button>
                 </div>
               </div>
             </div>

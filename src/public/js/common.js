@@ -29,6 +29,8 @@ $allRadioBtns.on('change', function () {
 var $inputTypeTexts = $('input');
 $inputTypeTexts.prop('autocomplete', 'off');
 
+// 请求地址
+window._action = "http://" + document.domain + "/cgi-bin/cdata.cgi";
 
 /* 
   @text 弹窗文字
@@ -49,11 +51,8 @@ window._toast = function (text, awit) {
   });
 }
 
-// 请求地址
-window._action = "http://" + document.domain + "/cgi-bin/cdata.cgi";
 
 /* 
-  @url 请求地址
   @data 请求数据
   @method 请求方式
   return null
@@ -106,6 +105,22 @@ window._storages = {
   del: function (key) {
     sessionStorage.removeItem(key);
   }
+}
+
+// 将表单的数组对象格式转为对象格式
+// [{name:''},{age:''}] => {name:'',age:''}
+// el jquery表单节点
+window._formArrToObject = function (el) {
+  var arr = el.serializeArray();
+  var form = {};
+  $(arr).each(function (i, e) {
+    form[e.name] = e.value;
+  });
+
+  // for (var i = 0; i < arr.length; i++) {
+  //   form[arr[i].name] = arr[i].value;
+  // }
+  return form;
 }
 
 

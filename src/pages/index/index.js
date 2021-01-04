@@ -18,19 +18,22 @@ function loginHandel() {
     var str_md5 = $.md5('root' + value);
     var parmas = { operation: 'login', function: 'set', usrid: str_md5 };
     // console.log(parmas, $.cookie('LoginStatus'), 'parmas');
-
-    _request(parmas).then(function (res) {
-      if (res.error == 0) {
-        $.cookie('LoginStatus', true);
-        window.location.href = "/main.html";
-      } else if (res.error == 10001) {
-        _toast('密码错误');
-      } else {
-        getMsg('登录失败');
-      }
-    }).catch(function (err) {
-      _toast(err.status);
-    })
+    window.location.href = "/main.html";
+    return;
+    _request(parmas)
+      .then(function (res) {
+        if (res.error == 0) {
+          $.cookie('LoginStatus', true);
+          window.location.href = "/main.html";
+        } else if (res.error == 10001) {
+          _toast('密码错误');
+        } else {
+          _toast('登录失败');
+        }
+      })
+      .catch(function (err) {
+        _toast(err.status);
+      });
   } else {
     // $psErrorTip.show().html('请输入密码');
     _toast('请输入密码');
@@ -38,6 +41,7 @@ function loginHandel() {
 }
 
 $(function () {
+  // 登录模块
   $loginSubmitBtn.on('click', function () {
     loginHandel();
   });

@@ -8,11 +8,10 @@ require('./../../public/js/common.js');
 console.log(jQuery, $);
 
 function initLoadView() {
-  var login_status = _storages.get('login_status') || 0;
+  var login_status = $.cookie('LoginStatus') || false;
 
-  if (!Number(login_status)) {
-    window.location.href = '/';
-  }
+  if (login_status) return;
+  window.location.href = '/';
 }
 
 $(function () {
@@ -45,7 +44,7 @@ $(function () {
   // 退出
   var $exit = $('.exit-route-btn');
   $exit.on('click', function () {
-    _storages.set('login_status', 0);
+    $.cookie('LoginStatus', false);
     initLoadView();
   });
 
@@ -58,17 +57,39 @@ $(function () {
     $connectTypeMains.removeClass('active').eq(index).addClass('active');
   });
 
+  // 宽带拨号
+  var $setting_wizard_broadband_form = $("#setting_wizard_broadband_form");
+  var $setting_wizard_broadband_form_submit = $("#setting_wizard_broadband_form_submit");
+
+  $setting_wizard_broadband_form_submit.on('click', function () {
+    var form = _formArrToObject($setting_wizard_broadband_form);
+    console.log(form);
+  });
+
+  // 静态ip
+  var $setting_wizard_static_form = $("#setting_wizard_static_form");
+  var $setting_wizard_static_form_submit = $("#setting_wizard_static_form_submit");
+
+  $setting_wizard_static_form_submit.on('click', function () {
+    var form = _formArrToObject($setting_wizard_static_form);
+    console.log(form);
+  });
+
+  // 动态ip
+  var $setting_wizard_dynamic_form = $("#setting_wizard_dynamic_form");
+  var $setting_wizard_dynamic_form_submit = $("#setting_wizard_dynamic_form_submit");
+
+  $setting_wizard_dynamic_form_submit.on('click', function () {
+    var form = _formArrToObject($setting_wizard_dynamic_form);
+    console.log(form);
+  });
 
   // LAN口设置
   var $setting_lan_form = $("#setting_lan_form");
   var $setting_lan_submit = $("#setting_lan_submit");
 
   $setting_lan_submit.on('click', function () {
-    var arr = $setting_lan_form.serializeArray();
-    var form = {};
-    $(arr).each(function (i, e) {
-      form[e.name] = e.value;
-    })
+    var form = _formArrToObject($setting_lan_form);
     console.log(form);
   })
 
@@ -82,6 +103,8 @@ $(function () {
     isChecked ? $dhcp_wrapper.show() : $dhcp_wrapper.hide();
     $dhcp_inputs.val('');
   });
+
+
 
 
 
