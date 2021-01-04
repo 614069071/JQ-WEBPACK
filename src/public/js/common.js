@@ -49,17 +49,21 @@ window._toast = function (text, awit) {
   });
 }
 
+// 请求地址
+window._action = "http://" + document.domain + "/cgi-bin/cdata.cgi";
+
 /* 
   @url 请求地址
   @data 请求数据
   @method 请求方式
   return null
 */
-window._request = function (url, data, method) {
+window._request = function (data, method) {
   return new Promise(function (resolve, reject) {
     $.ajax({
       type: method || 'post',
-      url: url,
+      url: _action,
+      timeout: 3000,
       data: data,
       // dataType: "json",
       dataType: "jsonp",
@@ -103,3 +107,5 @@ window._storages = {
     sessionStorage.removeItem(key);
   }
 }
+
+
